@@ -2,8 +2,10 @@
 .Blogs{
   display: flex;
   gap:20px;
-  overflow-x:visible;
+  
   flex-direction: row;
+  margin-top: 70px;
+  padding: 20px;
 }
 .blog-post{
   flex: 0 0 100%;
@@ -40,7 +42,6 @@ body,html {
     color: #333;
     width: 100%;
     height: 100%;
-    position: relative;
 }
 
 h1 {
@@ -79,14 +80,14 @@ h1 {
 
 .post {
     display: flex;
-    background-color: #fff;
-    border: 1px solid #ddd;
+    background-color: #f1eded;
+    border: 2px solid #ddd;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     margin-top: 15px;
-    font-size: 1rem;
-    color: #555;
+    font-size: 1.5rem;
+    color: #383434;
     height:300px;
     overflow: auto;
 }
@@ -123,11 +124,24 @@ form {
 .box{
   display:flex;
 }
+.header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  z-index: 1000;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  
+
+}
 
 h1 {
   text-align: center;
   color: #2c3e50;
   margin-bottom: 1.5rem;
+  margin-left: 20px;
 }
 #login{
   margin-right: 10px;
@@ -181,14 +195,14 @@ button[type="submit"]:hover {
   background-color: #0056b3;
 }
 .create{
-  background-color: #90a5dd;
-  padding-bottom: 5px;
-  border-radius: 5px;
-  border-style: none;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  margin-bottom: 10px;
-  position:sticky;
-
+  
+  padding: 10px 20px;
+  background-color: #007BFF;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+    
 
   
 }
@@ -197,11 +211,11 @@ button[type="submit"]:hover {
     font-size: 1rem;
     font-weight: bold;
     height:20px;
-    color: #c9c37a;
+    color: #242422;
     margin-bottom: 10px;
     border-left: 5px solid #21282d;
     padding-left: 15px;
-    background-color: #4d604e;
+    background-color: #12e1d8;
     padding: 10px 15px;
     border-radius: 4px;
 

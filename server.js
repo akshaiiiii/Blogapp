@@ -16,14 +16,15 @@ const server = http.createServer((req, res) => {
     }
 
     if (url.startsWith('/public/')) {
-        const ext = path.extname(url);
+        const cleanurl=url.split('?')[0];
+        const ext = path.extname(cleanurl);
         const contentTypeMap = {
             '.css': 'text/css',
             '.js': 'application/javascript',
             '.html': 'text/html'
         };
         const contentType = contentTypeMap[ext] || 'text/plain';
-        return serveFiles(res, path.join(__dirname, url), contentType);
+        return serveFiles(res, path.join(__dirname, cleanurl), contentType);
     }
 
     if (url.startsWith('/api/posts')) {

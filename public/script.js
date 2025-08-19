@@ -37,7 +37,6 @@ async function fetchposts() {
 
             title_container.appendChild(title);
 
-            // ✅ Admin button logic
             if (userRole === 'admin') {
                 const button_container = document.createElement('div');
                 button_container.className = "button-container";
@@ -81,7 +80,6 @@ async function fetchposts() {
             con.className = 'post';
             con.innerText = post.content;
 
-            // ✅ Append all to container
             container.appendChild(title_container);
             container.appendChild(author);
             container.appendChild(con);
