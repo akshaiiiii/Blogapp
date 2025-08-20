@@ -13,11 +13,14 @@ async function getpost(post_id){
     }
 }
 async function updatepost(post_id,updateddata){
+    const token = localStorage.getItem('token');
     try{
+        console.log(post_id)
         const res=await fetch(`/api/posts/${post_id}`,{
         method:'PUT',
         headers:{
-            'Content-Type':'application/json'
+            'Content-Type':'application/json',
+            'Authorization': `Bearer ${token}` 
         },
         body:JSON.stringify(updateddata)
     })   

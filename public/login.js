@@ -1,6 +1,5 @@
 const form=document.getElementById("loginform")
 const signup=document.getElementById("signup")
-alert("hai")
 form.addEventListener("submit",async(e)=>{
     e.preventDefault()
     const username=form.username.value.trim()
@@ -10,13 +9,12 @@ form.addEventListener("submit",async(e)=>{
         return;
     }
     try{
-        console.log("kfjak")
         const res=await fetch('/login',{
             method:'POST',
             headers:{'Content-Type':'application/json'},
             body:JSON.stringify({username,password})
         })
-        alert("hellooooo")
+
         const data=await res.json()
         if(res.ok && data.token){
             localStorage.setItem('token',data.token)

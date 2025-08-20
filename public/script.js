@@ -3,7 +3,6 @@ let userRole = null;
 
 if (token) {
     try {
-        console.log("i am here")
         const decode = jwt_decode(token);
         userRole = decode.role;
     } catch (e) {
@@ -27,7 +26,6 @@ async function fetchposts() {
             const container = document.createElement('div');
             container.className = 'blog-post';
 
-            // ✅ Properly create the title container
             const title_container = document.createElement('div');
             title_container.className = 'title-container';
 
@@ -54,7 +52,11 @@ async function fetchposts() {
                 del.addEventListener('click', async () => {
                     try {
                         const res = await fetch(`/api/posts/${post._id}`, {
-                            method: 'DELETE'
+                            method: 'DELETE',
+                            headers:{
+                                'Authorization': `Bearer ${token}`,
+                                'Content-Type': 'application/json'
+                            }
                         });
                         if (res.ok) {
                             alert("Post deleted successfully");

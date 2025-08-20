@@ -1,13 +1,12 @@
-
-.Blogs{
+/* /* 
+ /* .Blogs{
   display: flex;
   gap:20px;
-  
   flex-direction: row;
   margin-top: 70px;
-  padding: 20px;
-}
-.blog-post{
+  padding: 20px; 
+} */
+/* .blog-post{
   flex: 0 0 100%;
   height: 400px;
   scroll-snap-align: start;
@@ -15,33 +14,61 @@
   padding: 20px;
   
 
+} */
+
+
+ html, body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+ .Blogs {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  width: 100vw;
+  height: 100vh;
+  scroll-behavior: smooth;
+}
+.blog-post{
+  flex: 0 0 100vw;
+  height: 100vh;
+  scroll-snap-align: start;
+  border-radius: 8px;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #F0F0F5;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 .title-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    top:40px;
     margin-bottom: 10px;
     position: sticky;
     font-size: 1.5rem;
     font-weight: bold;
     height:50px;
-    color: #2c3e50;
     margin-bottom: 10px;
-    border-left: 5px solid #3498db;
     padding-left: 15px;
-    background-color: #eaf4fc;
+    color: #2C3E50;
+    background-color: #EAF4FC;
+    border-left: 5px solid #4169E1;
     padding: 10px 15px;
     border-radius: 4px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
-/* Body styling */
 body,html {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f4f4;
     padding: 20px;
     color: #333;
-    width: 100%;
-    height: 100%;
 }
 
 h1 {
@@ -80,8 +107,8 @@ h1 {
 
 .post {
     display: flex;
-    background-color: #f1eded;
-    border: 2px solid #ddd;
+    background-color: #FFFFFF;
+    border: 1px solid #DDD;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
@@ -118,8 +145,8 @@ form {
   padding: 2rem 2.5rem;
   border-radius: 10px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  width: 100%;
   max-width: 500px;
+  width: 400px
 }
 .box{
   display:flex;
@@ -166,6 +193,21 @@ textarea {
   font-size: 1rem;
   transition: border-color 0.3s ease;
 }
+input[type="password"]{
+  width: 95%;
+  padding: 0.75rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+
+}
+input[type="password"]:focus,
+ textarea:focus{
+  border-color: #007bff;
+  outline: none;
+}
 
 input[type="text"]:focus,
 textarea:focus {
@@ -207,16 +249,16 @@ button[type="submit"]:hover {
   
 }
 .author{
-  position: sticky;
-    font-size: 1rem;
+    font-size: 1.25rem;
+    position:sticky;
     font-weight: bold;
     height:20px;
-    color: #242422;
     margin-bottom: 10px;
-    border-left: 5px solid #21282d;
+    background-color: #DCE3FA;
+    color: #2C3E50;
+    border-left: 5px solid #27408B;
     padding-left: 15px;
-    background-color: #12e1d8;
     padding: 10px 15px;
     border-radius: 4px;
-
+    margin-top: 30px;
 }

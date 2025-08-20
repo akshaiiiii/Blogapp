@@ -1,5 +1,8 @@
 const { ConnectDB } = require('../db/mongodb');
 const { ObjectId } = require('mongodb');
+const SECRET = 'your-secret-key';
+const jwt = require('jsonwebtoken');
+
 exports.getPosts = async (req, res) => {
     try {
         const db = await ConnectDB();
@@ -26,6 +29,23 @@ exports.createPost = async (req, res, data) => {
 
 exports.updatePost = async (req, res, id, updatedData) => {
     try {
+        const authHeader = req.headers['authorization'];
+        const token = authHeader && authHeader.split(' ')[1];
+        if (!token) {
+            res.writeHead(401, { 'Content-Type': 'text/plain' });
+            return res.end('Access token missing');
+        }
+        let decoded;
+        try {
+            decoded = jwt.verify(token, SECRET);
+        } catch (err) {
+            res.writeHead(403, { 'Content-Type': 'text/plain' });
+            return res.end('Invalid or expired token');
+        }
+        if(decoded.role!=="admin"){
+            res.writeHead(403, { 'Content-Type': 'text/plain' });
+            return res.end('You do not have permission to delete posts');   
+        }
         const db = await ConnectDB();
         const result = await db.collection('blogs').updateOne({ _id: new ObjectId(id) }, { $set: updatedData });
         if (result.matchedCount === 0) {
@@ -42,6 +62,24 @@ exports.updatePost = async (req, res, id, updatedData) => {
 
 exports.deletePost = async (req, res, id) => {
     try {
+        const authHeader = req.headers['authorization'];
+        const token = authHeader && authHeader.split(' ')[1];
+        console.log(token)
+        if (!token) {
+            res.writeHead(401, { 'Content-Type': 'text/plain' });
+            return res.end('Access token missing');
+        }
+        let decoded;
+        try {
+            decoded = jwt.verify(token, SECRET);
+        } catch (err) {
+            res.writeHead(403, { 'Content-Type': 'text/plain' });
+            return res.end('Invalid or expired token');
+        }
+        if(decoded.role!=="admin"){
+            res.writeHead(403, { 'Content-Type': 'text/plain' });
+            return res.end('You do not have permission to delete posts');   
+        }
         const db = await ConnectDB();
         const result = await db.collection('blogs').deleteOne({ _id: new ObjectId(id) });
         if (result.deletedCount === 0) {
@@ -50,6 +88,8 @@ exports.deletePost = async (req, res, id) => {
         }
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ message: 'Post deleted', result }));
+        
+        
     } catch (err) {
         res.writeHead(500, { 'Content-Type': 'text/plain' });
         res.end('Failed to delete post');
