@@ -1,6 +1,7 @@
 const { ConnectDB } = require('../db/mongodb');
 const { ObjectId } = require('mongodb');
-const SECRET = 'your-secret-key';
+require('dotenv').config();
+const SECRET_KEY =process.env.SECRET;
 const jwt = require('jsonwebtoken');
 
 exports.getPosts = async (req, res) => {
@@ -37,7 +38,7 @@ exports.updatePost = async (req, res, id, updatedData) => {
         }
         let decoded;
         try {
-            decoded = jwt.verify(token, SECRET);
+            decoded = jwt.verify(token, SECRET_KEY);
         } catch (err) {
             res.writeHead(403, { 'Content-Type': 'text/plain' });
             return res.end('Invalid or expired token');
@@ -71,7 +72,7 @@ exports.deletePost = async (req, res, id) => {
         }
         let decoded;
         try {
-            decoded = jwt.verify(token, SECRET);
+            decoded = jwt.verify(token, SECRET_KEY);
         } catch (err) {
             res.writeHead(403, { 'Content-Type': 'text/plain' });
             return res.end('Invalid or expired token');

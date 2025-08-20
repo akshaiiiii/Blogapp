@@ -1,6 +1,8 @@
 console.log("hai i am in the db1 folder")
 const mysql=require('mysql2')
-const pool=mysql.createPool('mysql://root:root@localhost:3306/user_authentication');
+require('dotenv').config();
+const url=process.env.MYSQL_URL
+const pool=mysql.createPool(url);
 const promisedpool=pool.promise()
 module.exports=promisedpool
 

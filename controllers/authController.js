@@ -1,7 +1,9 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const pool = require('../db/mysql');
-const SECRET_KEY = 'your-secret-key';
+
+require('dotenv').config();
+const SECRET_KEY =process.env.SECRET;
 
 exports.signup = async (req, res, data) => {
     const { username, password } = data;
