@@ -5,6 +5,7 @@ if (token) {
     try {
         const decode = jwt_decode(token);
         userRole = decode.role;
+        console.log(userRole)
     } catch (e) {
         console.log("decoding failed")
     }
@@ -36,6 +37,7 @@ async function fetchposts() {
             title_container.appendChild(title);
 
             if (userRole === 'admin') {
+                
                 const button_container = document.createElement('div');
                 button_container.className = "button-container";
 
